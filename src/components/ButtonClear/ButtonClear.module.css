@@ -1,23 +1,25 @@
 .ButtonClear {
   position: absolute;
   right: 0;
-
+  color: #fafafa;
   width: 48px;
   height: 48px;
-
-  background-image: url('../../icons/clear.png');
   background-size: 70%;
   background-repeat: no-repeat;
   background-position: center;
   background-color: #00c3ff;
   background-image: #00c3ff;
   opacity: 0.5;
+  border-radius: 10px;
   border: 0;
   outline: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
 .ButtonClear:hover {
   opacity: 0.8;
+  background-color: #303f9f;
 }
