@@ -5,17 +5,15 @@ import PropTypes from 'prop-types';
 const Modal = ({ onClose, largeImageURL }) => {
   useEffect(() => {
 
-    // функція для закриття модального вікна по клавіші ESC
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
         onClose();
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown); // слухаємо клавіші
-
+    window.addEventListener('keydown', handleKeyDown); 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown); // прибираємо слухача
+      window.removeEventListener('keydown', handleKeyDown); 
     };
   }, [onClose]);
 
