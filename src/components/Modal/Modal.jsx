@@ -4,21 +4,25 @@ import PropTypes from 'prop-types';
 
 const Modal = ({ onClose, largeImageURL }) => {
   useEffect(() => {
-
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
         onClose();
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown); 
+    window.addEventListener('keydown', handleKeyDown);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown); 
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [onClose]);
 
+  const handleBackdropClick = event => {
+    if (event.currentTarget === event.target) {
+      onClose();
+    }
+  };
   return (
-    <div className={css.overlay} onClick={onClose}>
+    <div className={css.overlay} onClick={handleBackdropClick}>
       <div className={css.modal}>
         <img className={css.modal__image} src={largeImageURL} alt="" />
       </div>

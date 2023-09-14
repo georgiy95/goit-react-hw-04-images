@@ -25,7 +25,6 @@ const Searchbar = ({ onSubmit, onChange, onClickClear, inputValue }) => (
     </form>
   </header>
 );
-
 Searchbar.propTypes = {
   onSubmit: PropTypes.func,
   onChange: PropTypes.func,
