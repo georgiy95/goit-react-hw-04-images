@@ -67,16 +67,15 @@ const App = () => {
 
       try {
         const response = await fetchImages(searchQuery, page);
+        response.totalHits === 0 && setNoResults(true);
         setImages(prevState => [...prevState, ...response.hits]);
         setLastPage(Math.ceil(response.totalHits / 12));
-        response.totalHits === 0 && setNoResults(true);
       } catch (error) {
         setError(error);
       } finally {
         setIsLoading(false);
       }
     };
-
     fetchImagesByQuery(query);
   }, [page, query]);
 

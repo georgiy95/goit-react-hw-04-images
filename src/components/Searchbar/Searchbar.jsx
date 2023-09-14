@@ -10,7 +10,6 @@ const Searchbar = ({ onSubmit, onChange, onClickClear, inputValue }) => (
         <BiSearch size="25" />
         <span className={css.searchFormButtonLabel}>Search</span>
       </button>
-
       <input
         className={css.searchFormInput}
         type="text"
