@@ -9,6 +9,7 @@ import Modal from './Modal/Modal';
 import Loader from './Loader/Loader';
 
 const App = () => {
+  const [inputValue, setInputValue] = useState('');
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(0);
   const [images, setImages] = useState([]);
@@ -21,16 +22,25 @@ const App = () => {
   });
   const [noResults, setNoResults] = useState(false);
 
+  const handleChange = event => {
+    setInputValue(event.target.value);
+  };
+
+  const onClickClear = () => {
+    setInputValue('');
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
-    const query = event.currentTarget.elements.query.value;
 
-    if (query === '') {
+    if (inputValue === '') {
       alert('Please enter your query');
       return;
     }
-    setQuery(query);
+
+    if (query === inputValue) return;
     setImages([]);
+    setQuery(inputValue);
     setPage(1);
   };
 
@@ -71,7 +81,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <Searchbar handleSubmit={handleSubmit} />
+      <Searchbar
+        onSubmit={handleSubmit}
+        onChange={handleChange}
+        onClickClear={onClickClear}
+        inputValue={inputValue}
+      />
       <Section>
         {error && (
           <p className="alertStyle">Something went wrong: {error.message}</p>
