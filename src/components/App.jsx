@@ -9,7 +9,6 @@ import Modal from './Modal/Modal';
 import Loader from './Loader/Loader';
 
 const App = () => {
-  const [inputValue, setInputValue] = useState('');
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(0);
   const [images, setImages] = useState([]);
@@ -22,25 +21,16 @@ const App = () => {
   });
   const [noResults, setNoResults] = useState(false);
 
-  const handleChange = event => {
-    setInputValue(event.target.value);
-  };
-
-  const onClickClear = () => {
-    setInputValue('');
-  };
-
   const handleSubmit = event => {
     event.preventDefault();
+    const query = event.currentTarget.elements.query.value;
 
-    if (inputValue === '') {
+    if (query === '') {
       alert('Please enter your query');
       return;
     }
-
-    if (query === inputValue) return;
+    setQuery(query);
     setImages([]);
-    setQuery(inputValue);
     setPage(1);
   };
 
@@ -81,12 +71,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Searchbar
-        onSubmit={handleSubmit}
-        onChange={handleChange}
-        onClickClear={onClickClear}
-        inputValue={inputValue}
-      />
+      <Searchbar handleSubmit={handleSubmit} />
       <Section>
         {error && (
           <p className="alertStyle">Something went wrong: {error.message}</p>
